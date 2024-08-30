@@ -2,19 +2,19 @@
 import { getByCategory, getPhots, searchUnsplashPhotos } from "@/lib";;
 import Sidebar from "@/components/sidebar";
 import { accessKey } from "./consonants";
-import { useEffect, useState } from "react";
+import { ReactHTMLElement, ReactNode, useEffect, useState } from "react";
 import Card, { Photo } from "@/components/card";
 import Navbar from "@/components/navbar";
 import { Close } from "@mui/icons-material";
 
 export default function Home() {
   const [photos, setphotos] = useState<Photo | []>([])
-  const [category, setcategory] = useState<string | null>(null)
+  const [category, setcategory] = useState<string>('')
   const [isOpened, setisOpened] = useState<Boolean>(false)
   const [limit, setlimit] = useState(20)
   const [keyword, setkeyword] = useState(null)
   useEffect(() => {
-    async function getData(accessKey: string, limit: number, category=null) {
+    async function getData(accessKey: string, limit: number, category='') {
       try {
         const data = await getPhots(accessKey, limit);
         setphotos(data)
@@ -35,13 +35,15 @@ export default function Home() {
     getCategoryPhotos(accessKey, category);
   }, [category])
   
-  const categoryHandler = (e) => {
-    setcategory(e.target.innerText);
+  const categoryHandler = (e: React.MouseEvent) => {
+    const target = e.target as HTMLButtonElement;
+    const text = target.innerText
+    setcategory(text);
   }
   
   const openSideBar = () => setisOpened(prev => !prev);
 
-  const keyWordhandler = (e) => {
+  const keyWordhandler = (e: React.FormEvent<HTMLFormElement>) => {
     setkeyword(e.currentTarget.value);
   }
 
@@ -56,7 +58,7 @@ export default function Home() {
     }
   }
   const closeCategoryWord = () => {
-    setcategory(null);
+    setcategory('');
   }
     
   return (

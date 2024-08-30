@@ -31,7 +31,7 @@ export const getPhots = async (accessKey: string, limit: number):Promise<Photo> 
     });
 };
 
-export const getByCategory = async (accessKey: string, category: string) => {
+export const getByCategory = async (accessKey: string, category: string):Promise<Photo> => {
   return await fetch(
     `https://api.unsplash.com/search/photos?page=1&per_page=20&query=${encodeURIComponent(
       category

@@ -7,19 +7,23 @@ import React from 'react'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import Link from 'next/link';
 
-export interface Photo {
-    url: string;
-    title: string;
-    slug: string;
-    created_at: string;
-    likes: number;
-    download?: string;
-    color?: string;
-    user?: {
-        name?: string;
-        url?: string;
-    },
+interface Phot {
+  url: string;
+  title: string;
+  slug: string;
+  created_at: string;
+  likes: number;
+  download?: string;
+  color?: string;
+  user?: {
+      name?: string;
+      url?: string;
+  },
 };
+
+export interface Photo {
+  [index: number]: Phot
+}
 
 export default function Card({photo}: {photo: Photo}) {
   return (
