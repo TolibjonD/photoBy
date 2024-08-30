@@ -1,6 +1,8 @@
+import { Photo } from "./components/card";
+
 const accessKey = "LvUcxTAcQiqCcgwSVytdZpJ9o6CL3ZFN3EJ5d9a1Iv0";
 
-export const getPhots = async (accessKey: string, limit: number) => {
+export const getPhots = async (accessKey: string, limit: number):Promise<Photo> => {
   return await fetch(
     `https://api.unsplash.com/photos?page=1&per_page=${limit}&client_id=${accessKey}`
   )

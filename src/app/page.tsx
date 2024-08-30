@@ -3,14 +3,14 @@ import { getByCategory, getPhots, searchUnsplashPhotos } from "@/lib";;
 import Sidebar from "@/components/sidebar";
 import { accessKey } from "./consonants";
 import { useEffect, useState } from "react";
-import Card from "@/components/card";
+import Card, { Photo } from "@/components/card";
 import Navbar from "@/components/navbar";
 import { Close } from "@mui/icons-material";
 
 export default function Home() {
-  const [photos, setphotos] = useState([])
-  const [category, setcategory] = useState(null)
-  const [isOpened, setisOpened] = useState(false)
+  const [photos, setphotos] = useState<Photo | []>([])
+  const [category, setcategory] = useState<string | null>(null)
+  const [isOpened, setisOpened] = useState<Boolean>(false)
   const [limit, setlimit] = useState(20)
   const [keyword, setkeyword] = useState(null)
   useEffect(() => {
